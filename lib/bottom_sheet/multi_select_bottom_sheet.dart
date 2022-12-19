@@ -147,12 +147,21 @@ class _MultiSelectBottomSheetState<T> extends State<MultiSelectBottomSheet<T>> {
         activeColor: widget.colorator != null
             ? widget.colorator!(item.value) ?? widget.selectedColor
             : widget.selectedColor,
-        title: Text(
-          item.label,
-          style: item.selected
-              ? widget.selectedItemsTextStyle
-              : widget.itemsTextStyle,
-        ),
+        title: Row(
+          children: [
+            if(item.imageWidget != null)
+              Padding(
+                padding: EdgeInsets.only(right: 5),
+                child: item.imageWidget!,
+              ),
+            Text(
+              item.label,
+              style: item.selected
+                  ? widget.selectedItemsTextStyle
+                  : widget.itemsTextStyle,
+            )
+          ],
+        ) ,
         controlAffinity: ListTileControlAffinity.leading,
         onChanged: (checked) {
           setState(() {
