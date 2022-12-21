@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:convert';
 import '../util/multi_select_item.dart';
 import '../util/multi_select_actions.dart';
 import '../util/multi_select_list_type.dart';
@@ -128,6 +129,11 @@ class _MultiSelectBottomSheetState<T> extends State<MultiSelectBottomSheet<T>> {
       if (_selectedValues.contains(_items[i].value)) {
         _items[i].selected = true;
       }
+      
+      if(jsonEncode(_selectedValues).contains(jsonEncode(_items[i].value))){
+        _items[i].selected = true;
+      }
+
     }
 
     if (widget.separateSelectedItems) {
